@@ -6,6 +6,11 @@ class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(..., min_length=8)
 
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
 # ───────── 출력용 ─────────
 class UserRead(BaseModel):
     id: int
@@ -15,3 +20,8 @@ class UserRead(BaseModel):
 
     class Config:
         orm_mode = True
+
+class Token(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
